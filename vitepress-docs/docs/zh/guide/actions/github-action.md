@@ -13,6 +13,10 @@
 `worker.dev` 域名在中国无法访问，请自定义域名
 :::
 
+## 检查部署配置
+
+在 Actions 运行 `Check Deployment Secrets`，检查四个必需 Secrets、账户 ID、`BACKEND_TOML` 的 Worker 名称和现有 D1/KV 绑定、`FRONTEND_ENV` 的 API 地址，以及 API Token 对后端 `mailapi` 和前端 `morning-wave-84d2` 的读取权限。日志只报告检查结果，不输出 Secret 值，也不部署。修改检查工作流时会自动运行；读取成功仍不代表具备部署写入权限。
+
 ## 部署步骤
 
 ### Fork 仓库并启用 Actions

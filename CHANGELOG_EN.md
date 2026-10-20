@@ -22,6 +22,8 @@
 
 ### Improvements
 
+- feat: |Deployment| Add secret-safe deployment checks for the account, backend bindings, frontend API URL, and read access to both Workers
+
 - feat: |Deployment| Deploy this fork's primary frontend to the existing static-assets Worker `morning-wave-84d2`, reuse `FRONTEND_ENV`, and skip primary frontend deployment after a failed upstream sync
 
 - feat: |AI Extract| Improve local verification-code rules: also read the mail subject; support codes before keywords (e.g. `116352（动态验证码）`, `ABC123 is your code`), `G-123456` prefixes, grouped / spaced / zero-width-split / full-width codes, and Russian, Spanish, Portuguese, French, German, Italian, Turkish and Hebrew keywords; reject numbers longer than 8 digits, decimals and amounts, times, digits in URLs and email addresses, tracking / order / voucher codes and letters-only words; only accept keyword-less numbers in stricter positions; bound input length and remove regex backtracking risks
