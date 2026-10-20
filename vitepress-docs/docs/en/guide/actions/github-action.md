@@ -1,5 +1,11 @@
 # Deploy via GitHub Actions
 
+::: tip Primary frontend in this fork
+This fork's `Deploy Frontend` workflow deploys the primary frontend to the existing static-assets Worker `morning-wave-84d2`, using `mail.fuweilianggood.eu.org`. The build reads `FRONTEND_ENV` (the contents of local `frontend/.env.prod`) and uses the shared Cloudflare account ID and API token. The token needs permission to edit this Worker.
+
+The primary frontend does not require `FRONTEND_NAME`, `FRONTEND_BRANCH`, or a Pages project; those Pages settings do not control this deployment. The Telegram frontend keeps its existing Pages deployment. The primary frontend deploys after a successful upstream sync or a manual `Deploy Frontend` run.
+:::
+
 ::: warning Notice
 Currently only supports Worker and Pages deployment.
 If you encounter any issues, please report them via `GitHub Issues`. Thank you.

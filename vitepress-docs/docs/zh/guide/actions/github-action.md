@@ -1,5 +1,11 @@
 # 通过 Github Actions 部署
 
+::: tip 当前 fork 的主前端
+本 fork 的 `Deploy Frontend` 工作流将主前端部署到现有静态资源 Worker `morning-wave-84d2`，继续使用 `mail.fuweilianggood.eu.org`。构建读取 `FRONTEND_ENV`（本地 `frontend/.env.prod` 的内容），并使用公共的 Cloudflare 账户 ID 和 API Token。Token 需要编辑该 Worker 的权限。
+
+主前端无需 `FRONTEND_NAME`、`FRONTEND_BRANCH` 或 Pages 项目；这两个 Pages 设置不控制当前主前端。Telegram 前端仍保留原有 Pages 部署方式。上游同步成功后自动部署，也可手动运行 `Deploy Frontend`。
+:::
+
 ::: warning 注意
 目前只支持 worker 和 pages 的部署。
 有问题请通过 `Github Issues` 反馈，感谢。

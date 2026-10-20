@@ -11,7 +11,13 @@ on:
 
 jobs:
   deploy-frontend:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: frontend-worker-production
+      cancel-in-progress: false
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -27,25 +33,24 @@ jobs:
           version: 10
           run_install: false
 
-      - name: Deploy Frontend for ${{ github.ref_name }}
-        if: ${{ env.FRONTEND_NAME != '' }}
+      - name: Build and deploy frontend to morning-wave-84d2
+        working-directory: frontend
         run: |
-          cd frontend/
-          echo "${{ secrets.FRONTEND_ENV }}" > .env.prod
+          set -euo pipefail
+          for key in CLOUDFLARE_ACCOUNT_ID CLOUDFLARE_API_TOKEN FRONTEND_ENV_CONTENT; do
+            if [ -z "${!key}" ]; then
+              echo "::error::Missing required configuration: $key"
+              exit 1
+            fi
+          done
+          printf '%s\n' "$FRONTEND_ENV_CONTENT" > .env.prod
           pnpm install --no-frozen-lockfile
-          export frontend_branch="${{ secrets.FRONTEND_BRANCH }}"
-          if [ -n "$frontend_branch" ]; then
-            echo "Deploying branch $frontend_branch"
-            pnpm run deploy:actions --project-name=$FRONTEND_NAME --branch $frontend_branch
-          else
-            echo "Deploying branch production"
-            pnpm run deploy --project-name=$FRONTEND_NAME
-          fi
-          echo "Deployed for tag ${{ github.ref_name }}"
+          pnpm run build
+          pnpm exec wrangler deploy --name morning-wave-84d2 --assets ./dist --compatibility-date 2026-10-05 --keep-vars
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          FRONTEND_NAME: ${{ secrets.FRONTEND_NAME }}
+          FRONTEND_ENV_CONTENT: ${{ secrets.FRONTEND_ENV }}
 
   deploy-telegram-frontend:
     runs-on: ubuntu-latest
