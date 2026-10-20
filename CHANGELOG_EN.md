@@ -22,7 +22,7 @@
 
 ### Improvements
 
-- feat: |Deployment| Add secret-safe deployment checks for the account, backend bindings, frontend API URL, and read access to both Workers
+- feat: |Deployment| Add secret-safe deployment checks for the account, backend bindings, frontend API URL, token validity, and read access to both Workers
 
 - feat: |Deployment| Deploy this fork's primary frontend to the existing static-assets Worker `morning-wave-84d2`, reuse `FRONTEND_ENV`, and skip primary frontend deployment after a failed upstream sync
 

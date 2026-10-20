@@ -22,7 +22,7 @@
 
 ### Improvements
 
-- feat: |部署| 增加不输出密钥值的部署 Secrets 检查，核对账户、后端绑定、前端 API 地址及两个 Worker 的读取权限
+- feat: |部署| 增加不输出密钥值的部署 Secrets 检查，核对账户、后端绑定、前端 API 地址、令牌有效状态及两个 Worker 的读取权限
 
 - feat: |部署| 当前 fork 的主前端自动部署至现有静态资源 Worker `morning-wave-84d2`，复用 `FRONTEND_ENV`，并在上游同步失败时跳过主前端部署
 

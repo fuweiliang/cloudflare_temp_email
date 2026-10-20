@@ -15,7 +15,7 @@ The `worker.dev` domain is inaccessible in China, please use a custom domain
 
 ## Check deployment configuration
 
-Run `Check Deployment Secrets` in Actions to validate the four required secrets, account ID, backend Worker name and existing D1/KV bindings, frontend API URL, and API token read access to backend `mailapi` and frontend `morning-wave-84d2`. Logs report results without exposing secret values or deploying. Changes to the check workflow trigger it automatically; successful reads do not establish deployment write permission.
+Run `Check Deployment Secrets` in Actions to validate the four required secrets, account ID, backend Worker name and existing D1/KV bindings, frontend API URL, API token validity, and API token read access to backend `mailapi` and frontend `morning-wave-84d2`. Logs report results without exposing secret values or deploying. Changes to the check workflow trigger it automatically; successful reads do not establish deployment write permission.
 
 ## Deployment Steps
 
